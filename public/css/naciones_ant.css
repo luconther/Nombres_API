@@ -1,0 +1,73 @@
+.container {  
+    display: grid;
+    border: 2px sienna;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 5px 5px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "A11 AD"
+      "A21 AD"
+      "A31 AD";
+      text-align: center;
+      position: relative;
+      font-style: #000;
+
+      /*grid-template-rows: 40px 1fr 30px;*/
+      /*grid-template-columns: 150px 1fr;*/
+  }
+
+ /* .Cabeza {
+    grid-area: Cabeza;
+    background-color: aqua;
+
+
+  }*/
+  
+  .A11 { 
+    grid-area: A11;
+    font-family: 'Raleway', sans-serif;
+    background-color: beige;
+    
+ 
+  }
+  
+  .A21 { 
+    grid-area: A21; 
+    font-family: 'Raleway', sans-serif;
+    font-size:large;;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    margin: -5px 0 0 -5px;
+    
+  }
+  
+  .A31 { 
+    grid-area: A31;
+    background-color: beige; 
+    
+  }
+  
+  .AD { 
+    grid-area: AD; 
+    
+    font-family: 'Raleway', sans-serif;
+    font-size:large;
+
+  }
+
+  h1{
+    font-family: 'Raleway', sans-serif;
+  }
+
+  h2{
+    font-family: 'Raleway', sans-serif;
+    font-size: large;
+  }
+
+  h3{
+    font-family: 'Raleway', sans-serif;
+    font-size:small;
+  }
+  

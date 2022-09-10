@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LFCH</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/naciones.css">
+
+  <script src="js/objeto_naciones.js"></script>
+  <script type="text/javascript">
+
+
+    async function traerPais(n){
+      const respuesta = await fetch("https://api.nationalize.io/?name="+n);
+      const nombre = respuesta.json();
+
+      return nombre; 
+         
+    }
+
+    function mostrarNombre(n){
+      for (let k=0; k<3; k++){
+        
+        const resultado = naciones.find( nac => nac.Id === n.country[k].country_id); 
+
+            document.getElementById("letreroPais"+k).innerHTML="<b>PAIS:</b>";
+           /* document.getElementById("pais"+k).innerHTML=n.country[k].country_id;*/
+            document.getElementById("nombrePais"+k).innerHTML=resultado.Pais;
+            document.getElementById("letreroProbabilidad"+k).innerHTML="<b>PROBABILIDAD:</b>";
+            document.getElementById("probabilidad"+k).innerHTML=Math.round(n.country[k].probability*100)+' %';
+            document.getElementById("lineadiv"+k).innerHTML="<hr>";         
+      }
+    }
+
+  </script>
+  
+</head>
+ 
+<body>
+
+
+
+  <div class="container">
+
+    <!--<div class="Cabeza">
+      <header>nada</header>
+    </div>-->
+
+    <div class="A11">
+      <h1>Nombres en el mundo</h1>
+      <h2><p>Esta es una API para predecir la nacionalidad a partir de un nombre.</p></h2>
+    </div>
+
+    <div class="A21">
+      <form>
+        <p>Introduce un nombre:</p>
+        <input type="text" id="nombre">  </input> 
+        <input type="button" onclick="traerPais(document.getElementById('nombre').value).then(mostrarNombre).catch(error => alert('Nacionalidad no encontrada.'))" value="Buscar" />
+        <input type="button" onclick="location.reload()" value="Limpiar" />
+     </form>
+    </div>
+
+    <div class="A31">
+
+      <img src="img/crowd.jpg" height="180px" width="240px">
+    </div>
+    
+    <div class="AD">
+      <script>
+        for(let r=0; r<3; r++){
+          document.write("<p id=letreroPais"+r+">");
+          document.write("&nbsp");
+          document.write("</p>")
+          /*document.write("<p id=pais"+r+">");
+          document.write("&nbsp");
+          document.write("</p>")*/
+          document.write("<p style=color:green;font-size:105%; id=nombrePais"+r+">");
+          document.write("&nbsp");
+          document.write("</p>")
+          document.write("<p id=letreroProbabilidad"+r+">");
+          document.write("&nbsp");
+          document.write("</p>")
+          document.write("<p style=color:green;font-size:105%; id=probabilidad"+r+">");
+          document.write("&nbsp");
+          document.write("</p>")
+          document.write("<p id=lineadiv"+r+">");
+          document.write("&nbsp");
+          document.write("</p>")       
+        }
+      </script>
+
+    </div>
+  </div>
+  <footer>
+    <h3 style="color:gray">&nbspFuente: Nationalize.io&nbsp&nbsp&nbsp&nbsp&nbsp&#169&nbsp2022&nbspLuis Contreras.&nbsp</h3>
+  </footer>
+
+</body>
+
+</html>

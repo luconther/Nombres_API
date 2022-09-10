@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Webpage Title -->
+  <title>Luis Contreras</title>
+  
+  <link rel="stylesheet" href="css/naciones.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Profesional en Tecnologías de la Información">
+  <meta name="author" content="Luis Francisco Contreras Hernández">
+
+  
+
+  <!-- Favicon  -->
+  <link rel="icon" href="img/favicon_l.png">
+
+  <script src="js/objeto_naciones.js"></script>
+  <script type="text/javascript">
+
+
+    async function traerPais(n){
+      const respuesta = await fetch("https://api.nationalize.io/?name="+n);
+      const nombre = respuesta.json();
+
+      return nombre; 
+         
+    }
+
+    function mostrarNombre(n){
+      for (let k=0; k<3; k++){
+        
+        const resultado = naciones.find( nac => nac.Id === n.country[k].country_id);
+       /* alert(resultado); */
+
+            document.getElementById("letreroPais"+k).innerHTML="<b>PAIS:</b>";
+           /* document.getElementById("pais"+k).innerHTML=n.country[k].country_id;*/
+            document.getElementById("nombrePais"+k).innerHTML=resultado.Pais;
+            document.getElementById("letreroProbabilidad"+k).innerHTML="<b>PROBABILIDAD:</b>";
+            document.getElementById("probabilidad"+k).innerHTML=Math.round(n.country[k].probability*100)+' %';
+            /*document.getElementById("lineadiv"+k).innerHTML="<hr>";   */      
+      }
+    }
+
+  </script>
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="container flex">
+          <h1 class="logo">&nbsp;</h1>
+            <nav>
+              <ul>
+                <li class="nav"><a class="outline" href="">&nbsp;</a></li>
+                <li class="nav"><a href="" class="outline">&nbsp;</a></li>
+              </ul>
+            </nav>
+        </div>
+      </div>
+
+      <section class="showcase">
+        <div class="container">
+            <div class="grid">
+              <div class="grid-item-1">
+                <div class="showcase-text">
+                  <h1>Nacionalidades en el mundo.</h1>
+                  <p class="supporting-text"> Uso de una API para predecir la nacionalidad a partir de un nombre.</p>
+                </div>
+                <div class="showcase-form">
+                  <form>
+                    <input type="text" placeholder="Ingresa un nombre" id="nombre">
+                    <input type="button" class="btn" onclick="traerPais(document.getElementById('nombre').value).then(mostrarNombre).catch(error => alert('Nacionalidad no encontrada.'))" value="Enviar">
+                    <input type="button" class="btn" onclick="location.reload()" value="Limpiar">
+                  </form>
+                  <p class="little-info">&nbsp;</p>
+                </div>
+              </div>
+
+              <div class="grid-item-2">
+                <div class="image">
+                  <img src="img/nodogente.jpg" alt="">
+                </div>
+              </div>
+           </div>
+
+        </div>
+      </section>
+      
+      <div class="lower-container container">
+        <!--
+        <section class="stats">
+          <div class="flex">
+            <div class="stat">
+              <i class="fa fa-folder-open fa-2x" aria-hidden="true"></i>
+              <h3 class="title">País</h3>
+              <p class="text">P1  .</p>
+            </div>
+            <div class="stat">
+              <i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i>
+              <h3 class="title">PAIS</h3>
+              <p class="text">P2</p>
+            </div>
+            <div class="stat">
+              <i class="fa fa-credit-card-alt fa-2x" aria-hidden="true"></i>
+              <h3 class="title">PAIS</h3>
+              <p class="text">P3</p>
+            </div>
+          </div>
+        </section>
+    -->
+
+        <section class="testimonials">
+            <div class="container">
+              <div class="testimonial grid-3">
+                <div class="card">
+                  <!--<div class="circle">
+                    <img src="./images/4.jpg" alt="">
+                  </div>-->
+                  <p class="pcaja" id="letreroPais0">&nbsp;</p>
+                  <p class="pdatocaja" id="nombrePais0">&nbsp;</p>
+                  <p class="pcaja" id="letreroProbabilidad0">&nbsp;</p>                 
+                  <p class="pdatocaja" id="probabilidad0">&nbsp;</p>
+                </div>
+                <div class="card">
+                  <!--<div class="circle">
+                    <img src="./images/5.jpg" alt="">
+                  </div>-->
+                  <p class="pcaja" id="letreroPais1">&nbsp;</p>
+                  <p class="pdatocaja" id="nombrePais1">&nbsp;</p>
+                  <p class="pcaja" id="letreroProbabilidad1">&nbsp;</p>                 
+                  <p class="pdatocaja" id="probabilidad1">&nbsp;</p>
+                </div>
+                <div class="card">
+                  <!--<div class="circle">
+                    <img src="./images/6.jpg" alt="">
+                  </div>-->
+                  <p class="pcaja" id="letreroPais2">&nbsp;</p>
+                  <p class="pdatocaja" id="nombrePais2">&nbsp;</p>
+                  <p class="pcaja" id="letreroProbabilidad2">&nbsp;</p>                 
+                  <p class="pdatocaja" id="probabilidad2">&nbsp;</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <footer>
+            <div class="container grid-3">
+              <div class="copyright">
+                <h4>Luis Contreras</h4>
+                <p class="little-info">Copyright &copy; 2022</p>
+              </div>
+              <!--<nav class="links">
+                <ul>
+                  <li><a href="" class="outline">Home</a></li>
+                  <li><a href="" class="outline">Tutors</a></li>
+                  <li><a href="" class="outline">Categories</a></li>
+                </ul>
+              </nav>
+              <div class="profiles">
+                <a href=""><em class="fab fa-twitter fa-2x"></em></a>
+                <a href=""><em class="fab fa-instagram fa-2x"></em></a>
+                <a href=""><em class="fab fa-facebook fa-2x"></em></a>
+                <a href=""><em class="fab fa-whatsapp fa-2x"></em></a>
+              </div>-->
+            </div>
+          </footer>
+ 
+</body>
+</html>
